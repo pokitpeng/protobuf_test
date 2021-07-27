@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package wrapper;
+
+option go_package = "/wrapper;wrapper";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/duration.proto";
+
+
+message Redis {
+  string network = 1;
+  string addr = 2;
+  string password = 3;
+  google.protobuf.Int32Value db = 4; // 可选参数，该字段生成的pb文件中，是指针类型
+  google.protobuf.Duration dial_timeout = 5; // 该字段生成的pb文件中，是指针类型
+  google.protobuf.Duration read_timeout = 6; // 该字段生成的pb文件中，是指针类型
+  google.protobuf.Duration write_timeout = 7; // 该字段生成的pb文件中，是指针类型
+}
+
+
+
+// protoc --proto_path=. --go_out=paths=source_relative:. *.proto
